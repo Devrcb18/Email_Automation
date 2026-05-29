@@ -18,7 +18,8 @@ export default function Dashboard() {
     setStatus("Processing lead...");
     
     try {
-        const res = await fetch('https://email-automation-b5ey.onrender.com/', {
+        // FIXED: Changed root domain endpoint to include '/process'
+        const res = await fetch('https://email-automation-b5ey.onrender.com/process', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -35,7 +36,8 @@ export default function Dashboard() {
             alert("Agent Error: " + responseData.error);
         }
     } catch (e) {
-        alert("Connection Error: Is the FastAPI backend running on port 8000?");
+        // FIXED: Updated error text to reflect cloud deployment realities
+        alert("Connection Error: Could not connect to the cloud AI backend. If using Render's Free tier, the server might be waking up from a cold start. Please wait a moment and try again.");
     } finally {
         setLoading(false);
         setStatus("");
@@ -95,7 +97,7 @@ export default function Dashboard() {
               <div className="space-y-2 flex-1 flex flex-col">
                 <label className="text-xs font-bold text-slate-600 uppercase tracking-wide">Message</label>
                 <textarea 
-                  className="flex-1 border border-slate-300 p-3.5 rounded-xl bg-slate-50 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all placeholder-slate-400 leading-relaxed" 
+                  className="flex-1 border border-slate-300 p-3.5 rounded-xl bg-slate-50 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all placeholder-slate-400 p-4 leading-relaxed" 
                   placeholder="Paste the email content here..."
                   value={email.content} 
                   onChange={e => setEmail({...email, content: e.target.value})} 

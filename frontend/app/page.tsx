@@ -18,7 +18,7 @@ export default function Dashboard() {
     setStatus("Processing lead...");
     
     try {
-        const res = await fetch('http://localhost:8000/process', {
+        const res = await fetch('https://email-automation-b5ey.onrender.com/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 

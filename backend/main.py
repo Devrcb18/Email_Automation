@@ -7,6 +7,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.tools.tavily_search import TavilySearchResults
 from supabase import create_client
 import warnings
+
 # Load variables & silence log clutter
 load_dotenv()
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
@@ -14,7 +15,7 @@ warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 from agent_graph import create_graph
 
-# Initialize Shared Shared Infrastructure
+# Initialize Shared Infrastructure
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.1)
 embeddings_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
@@ -34,6 +35,7 @@ workflow = create_graph(
 
 app = FastAPI(title="B2B AI CRM Backend")
 
+# CORS middleware allows connection safely from your Vercel instance
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -59,7 +61,6 @@ async def process_email(data: dict):
     }
 
     try:
-
         config = {
             "configurable": {
                 "llm": llm,
@@ -73,6 +74,7 @@ async def process_email(data: dict):
 
     except Exception as e:
         return {"success": False, "error": str(e)}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000)

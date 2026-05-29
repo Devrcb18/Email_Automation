@@ -1,0 +1,19 @@
+[project]
+name = "b2b-crm-agent"
+version = "0.1.0"
+description = "Isolated B2B AI CRM Agent Pipeline using LangGraph and FastAPI"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "langgraph>=0.0.30",
+    "langchain-core>=0.1.40",
+    "langchain-groq>=0.1.1",
+    "langchain-huggingface>=0.0.3",
+    "langchain-tavily>=0.1.0",
+    "supabase>=2.4.0",
+    "pydantic>=2.6.0",
+    "python-dotenv>=1.0.1",
+    "sentence-transformers>=2.6.0",
+]

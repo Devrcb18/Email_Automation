@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+langchain
+langchain-groq
+langchain-huggingface
+langchain-community
+tavily-python
+langgraph
+supabase
+python-dotenv
+pydantic
+typing-extensions
+sentence-transformers
